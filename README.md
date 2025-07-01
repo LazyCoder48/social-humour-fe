@@ -4,13 +4,38 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 ## Development server
 
-To start a local development server, run:
+### Local Development
+
+To start a local development server that is only accessible from your machine, run:
 
 ```bash
-ng serve
+npm run start:local
 ```
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+
+### Network Access
+
+To make the application accessible from other devices on your network, run:
+
+```bash
+npm run start
+```
+
+This will start the server with the host set to `0.0.0.0`, allowing connections from any IP address on your network. To access the application from another device:
+
+1. Find your computer's IP address on the network (e.g., 192.168.1.100)
+2. On the other device, open a browser and navigate to `http://YOUR_IP_ADDRESS:4200/` (e.g., http://192.168.1.100:4200/)
+
+### Public Access
+
+If you need to access the application from different domains or through a reverse proxy, use:
+
+```bash
+npm run start:public
+```
+
+This disables the host check, which can be useful in certain deployment scenarios.
 
 ## Code scaffolding
 
