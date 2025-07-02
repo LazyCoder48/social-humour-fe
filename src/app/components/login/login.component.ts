@@ -14,6 +14,9 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   isSubmitting = false;
+  isTwitterSubmitting = false;
+  isFacebookSubmitting = false;
+  isGoogleSubmitting = false;
   errorMessage = '';
   successMessage = '';
 
@@ -54,6 +57,57 @@ export class LoginComponent implements OnInit {
         error: (error) => {
           this.isSubmitting = false;
           this.errorMessage = error.error?.message || 'Login failed. Please check your credentials.';
+        }
+      });
+  }
+
+  loginWithFacebook(): void {
+    this.isFacebookSubmitting = true;
+    this.errorMessage = '';
+
+    this.authService.loginWithFacebook()
+      .subscribe({
+        next: () => {
+          this.router.navigate(['/']);
+        },
+        error: (error) => {
+          this.isFacebookSubmitting = false;
+          this.errorMessage = 'Facebook login failed. Please try again.';
+          console.error('Facebook login error:', error);
+        }
+      });
+  }
+
+  loginWithTwitter(): void {
+    this.isTwitterSubmitting = true;
+    this.errorMessage = '';
+
+    this.authService.loginWithTwitter()
+      .subscribe({
+        next: () => {
+          this.router.navigate(['/']);
+        },
+        error: (error) => {
+          this.isTwitterSubmitting = false;
+          this.errorMessage = 'Twitter login failed. Please try again.';
+          console.error('Twitter login error:', error);
+        }
+      });
+  }
+
+  loginWithGoogle(): void {
+    this.isGoogleSubmitting = true;
+    this.errorMessage = '';
+
+    this.authService.loginWithGoogle()
+      .subscribe({
+        next: () => {
+          this.router.navigate(['/']);
+        },
+        error: (error) => {
+          this.isGoogleSubmitting = false;
+          this.errorMessage = 'Google login failed. Please try again.';
+          console.error('Google login error:', error);
         }
       });
   }

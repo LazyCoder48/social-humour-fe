@@ -1,104 +1,130 @@
 <div class="signup-container">
-  <div class="signup-card">
-    <h2>Create an Account</h2>
+  <div class="signup-card animate-in">
+    <h2 class="animate-title">Create an Account</h2>
 
-    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input
-          type="text"
-          id="username"
-          formControlName="username"
-          placeholder="Enter username"
-        >
-        <div class="error-message" *ngIf="signupForm.get('username')?.invalid && signupForm.get('username')?.touched">
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="animate-form">
+      <div class="form-group" [class.field-active]="signupForm.get('username')?.value">
+        <label for="username" class="animate-label">Username</label>
+        <div class="input-container">
+          <input
+            type="text"
+            id="username"
+            formControlName="username"
+            placeholder="Enter username"
+            class="interactive-input"
+          >
+          <span class="input-focus-effect"></span>
+        </div>
+        <div class="error-message animate-error" *ngIf="signupForm.get('username')?.invalid && signupForm.get('username')?.touched">
           <span *ngIf="signupForm.get('username')?.errors?.['required']">Username is required</span>
           <span *ngIf="signupForm.get('username')?.errors?.['minlength']">Username must be at least 3 characters</span>
         </div>
       </div>
 
-      <div class="form-group">
-        <label for="firstName">First Name</label>
-        <input
-          type="text"
-          id="firstName"
-          formControlName="firstName"
-          placeholder="Enter first name"
-        >
-        <div class="error-message" *ngIf="signupForm.get('firstName')?.invalid && signupForm.get('firstName')?.touched">
+      <div class="form-group" [class.field-active]="signupForm.get('firstName')?.value">
+        <label for="firstName" class="animate-label">First Name</label>
+        <div class="input-container">
+          <input
+            type="text"
+            id="firstName"
+            formControlName="firstName"
+            placeholder="Enter first name"
+            class="interactive-input"
+          >
+          <span class="input-focus-effect"></span>
+        </div>
+        <div class="error-message animate-error" *ngIf="signupForm.get('firstName')?.invalid && signupForm.get('firstName')?.touched">
           <span *ngIf="signupForm.get('firstName')?.errors?.['required']">First name is required</span>
         </div>
       </div>
 
-      <div class="form-group">
-        <label for="lastName">Last Name</label>
-        <input
-          type="text"
-          id="lastName"
-          formControlName="lastName"
-          placeholder="Enter last name"
-        >
-        <div class="error-message" *ngIf="signupForm.get('lastName')?.invalid && signupForm.get('lastName')?.touched">
+      <div class="form-group" [class.field-active]="signupForm.get('lastName')?.value">
+        <label for="lastName" class="animate-label">Last Name</label>
+        <div class="input-container">
+          <input
+            type="text"
+            id="lastName"
+            formControlName="lastName"
+            placeholder="Enter last name"
+            class="interactive-input"
+          >
+          <span class="input-focus-effect"></span>
+        </div>
+        <div class="error-message animate-error" *ngIf="signupForm.get('lastName')?.invalid && signupForm.get('lastName')?.touched">
           <span *ngIf="signupForm.get('lastName')?.errors?.['required']">Last name is required</span>
         </div>
       </div>
 
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          formControlName="email"
-          placeholder="Enter email"
-        >
-        <div class="error-message" *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched">
+      <div class="form-group" [class.field-active]="signupForm.get('email')?.value">
+        <label for="email" class="animate-label">Email</label>
+        <div class="input-container">
+          <input
+            type="email"
+            id="email"
+            formControlName="email"
+            placeholder="Enter email"
+            class="interactive-input"
+          >
+          <span class="input-focus-effect"></span>
+        </div>
+        <div class="error-message animate-error" *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched">
           <span *ngIf="signupForm.get('email')?.errors?.['required']">Email is required</span>
           <span *ngIf="signupForm.get('email')?.errors?.['email']">Please enter a valid email</span>
         </div>
       </div>
 
-      <div class="form-group">
-        <label for="mobile">Mobile Number</label>
-        <input
-          type="tel"
-          id="mobile"
-          formControlName="mobile"
-          placeholder="Enter mobile number"
-        >
-        <div class="error-message" *ngIf="signupForm.get('mobile')?.invalid && signupForm.get('mobile')?.touched">
+      <div class="form-group" [class.field-active]="signupForm.get('mobile')?.value">
+        <label for="mobile" class="animate-label">Mobile Number</label>
+        <div class="input-container">
+          <input
+            type="tel"
+            id="mobile"
+            formControlName="mobile"
+            placeholder="Enter mobile number"
+            class="interactive-input"
+          >
+          <span class="input-focus-effect"></span>
+        </div>
+        <div class="error-message animate-error" *ngIf="signupForm.get('mobile')?.invalid && signupForm.get('mobile')?.touched">
           <span *ngIf="signupForm.get('mobile')?.errors?.['required']">Mobile number is required</span>
           <span *ngIf="signupForm.get('mobile')?.errors?.['pattern']">Please enter a valid 10-digit mobile number</span>
         </div>
       </div>
 
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          formControlName="password"
-          placeholder="Enter password"
-        >
-        <div class="error-message" *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched">
+      <div class="form-group" [class.field-active]="signupForm.get('password')?.value">
+        <label for="password" class="animate-label">Password</label>
+        <div class="input-container">
+          <input
+            type="password"
+            id="password"
+            formControlName="password"
+            placeholder="Enter password"
+            class="interactive-input"
+          >
+          <span class="input-focus-effect"></span>
+        </div>
+        <div class="error-message animate-error" *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched">
           <span *ngIf="signupForm.get('password')?.errors?.['required']">Password is required</span>
           <span *ngIf="signupForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters</span>
         </div>
       </div>
 
-      <div class="error-message" *ngIf="errorMessage">
+      <div class="error-message animate-error" *ngIf="errorMessage">
         {{ errorMessage }}
       </div>
 
       <button
         type="submit"
         [disabled]="signupForm.invalid || isSubmitting"
+        class="submit-btn"
       >
-        {{ isSubmitting ? 'Creating Account...' : 'Sign Up' }}
+        <span class="btn-text">{{ isSubmitting ? 'Creating Account...' : 'Sign Up' }}</span>
+        <span class="btn-loader" *ngIf="isSubmitting"></span>
       </button>
     </form>
 
-    <div class="login-link">
-      Already have an account? <a routerLink="/login">Log in</a>
+    <div class="login-link animate-link">
+      Already have an account? <a routerLink="/login" class="hover-effect">Log in</a>
     </div>
   </div>
 </div>

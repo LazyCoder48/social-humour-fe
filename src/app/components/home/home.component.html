@@ -1,11 +1,33 @@
 <div class="home-container">
-  <div class="content">
-    <h1 class="title">{{ title }}</h1>
-    <p class="tagline">Share and enjoy humorous content with friends</p>
+  <div class="content animate-in">
+    <h1 class="title animate-title">{{ title }}</h1>
+    <p class="tagline animate-tagline">Share and enjoy humorous content with friends</p>
+
+    <!-- Game Info and Rules Section -->
+    <div class="game-info-container animate-fade-in">
+      <div class="info-card rule-card">
+        <h3 class="info-title">Card Rules</h3>
+        <ul class="info-list">
+          <li class="info-item" *ngFor="let rule of randomRules">{{ rule }}</li>
+        </ul>
+      </div>
+
+      <div class="info-card info-card">
+        <h3 class="info-title">Game Info</h3>
+        <ul class="info-list">
+          <li class="info-item" *ngFor="let info of randomInfos">{{ info }}</li>
+        </ul>
+      </div>
+
+      <!--<button class="refresh-btn" (click)="refreshContent()">
+        <span class="refresh-icon"></span> New Tips
+      </button>
+    </div>-->
 
     <div class="buttons">
-      <a routerLink="/signup" class="btn signup-btn">Sign Up</a>
-      <a routerLink="/login" class="btn login-btn">Login</a>
+     <!-- <a routerLink="/signup" class="btn signup-btn pulse">Sign Up</a>
+      <a routerLink="/login" class="btn login-btn glow">Login</a>-->
+      <a routerLink="/memes" class="btn memes-btn shine">Let's get started</a>
     </div>
   </div>
 </div>

@@ -1,52 +1,85 @@
 <div class="login-container">
-  <div class="login-card">
-    <h2>Log In</h2>
+  <div class="login-card animate-in">
+    <h2 class="animate-title">Log In</h2>
 
-    <div class="success-message" *ngIf="successMessage">
+    <div class="success-message animate-fade" *ngIf="successMessage">
       {{ successMessage }}
     </div>
 
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="animate-form">
       <div class="form-group">
-        <label for="identifier">Username / Email / Mobile</label>
-        <input
-          type="text"
-          id="identifier"
-          formControlName="identifier"
-          placeholder="Enter username, email, or mobile"
-        >
-        <div class="error-message" *ngIf="loginForm.get('identifier')?.invalid && loginForm.get('identifier')?.touched">
+        <label for="identifier" class="animate-label">Username / Email / Mobile</label>
+        <div class="input-container">
+          <input
+            type="text"
+            id="identifier"
+            formControlName="identifier"
+            placeholder="Enter username, email, or mobile"
+            class="interactive-input"
+          >
+          <span class="input-focus-effect"></span>
+        </div>
+        <div class="error-message animate-error" *ngIf="loginForm.get('identifier')?.invalid && loginForm.get('identifier')?.touched">
           <span *ngIf="loginForm.get('identifier')?.errors?.['required']">Please enter your username, email, or mobile</span>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          formControlName="password"
-          placeholder="Enter password"
-        >
-        <div class="error-message" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+        <label for="password" class="animate-label">Password</label>
+        <div class="input-container">
+          <input
+            type="password"
+            id="password"
+            formControlName="password"
+            placeholder="Enter password"
+            class="interactive-input"
+          >
+          <span class="input-focus-effect"></span>
+        </div>
+        <div class="error-message animate-error" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
           <span *ngIf="loginForm.get('password')?.errors?.['required']">Password is required</span>
         </div>
       </div>
 
-      <div class="error-message" *ngIf="errorMessage">
+      <div class="error-message animate-error" *ngIf="errorMessage">
         {{ errorMessage }}
       </div>
 
       <button
         type="submit"
-        [disabled]="loginForm.invalid || isSubmitting"
+        [disabled]="loginForm.invalid || isSubmitting || isTwitterSubmitting || isFacebookSubmitting || isGoogleSubmitting"
+        class="submit-btn"
       >
-        {{ isSubmitting ? 'Logging in...' : 'Log In' }}
+        <span class="btn-text">{{ isSubmitting ? 'Logging in...' : 'Log In' }}</span>
+        <span class="btn-loader" *ngIf="isSubmitting"></span>
       </button>
     </form>
 
-    <div class="signup-link">
-      Don't have an account? <a routerLink="/signup">Sign up</a>
+    <div class="social-login animate-social">
+      <div class="divider">
+        <span>Or login with</span>
+      </div>
+      <div class="social-buttons">
+        <button type="button" class="social-btn twitter-btn" (click)="loginWithTwitter()" [disabled]="isTwitterSubmitting || isFacebookSubmitting || isGoogleSubmitting || isSubmitting">
+          <span class="social-icon" *ngIf="!isTwitterSubmitting">𝕏</span>
+          <span class="social-text" *ngIf="!isTwitterSubmitting">Twitter</span>
+          <span class="btn-loader" *ngIf="isTwitterSubmitting"></span>
+        </button>
+        <button type="button" class="social-btn facebook-btn" (click)="loginWithFacebook()" [disabled]="isTwitterSubmitting || isFacebookSubmitting || isGoogleSubmitting || isSubmitting">
+          <span class="social-icon" *ngIf="!isFacebookSubmitting">ⓕ</span>
+          <span class="social-text" *ngIf="!isFacebookSubmitting">Facebook</span>
+          <span class="btn-loader" *ngIf="isFacebookSubmitting"></span>
+        </button>
+        <button type="button" class="social-btn google-btn" (click)="loginWithGoogle()" [disabled]="isTwitterSubmitting || isFacebookSubmitting || isGoogleSubmitting || isSubmitting">
+          <span class="social-icon" *ngIf="!isGoogleSubmitting">G</span>
+          <span class="social-text" *ngIf="!isGoogleSubmitting">Google</span>
+          <span class="btn-loader" *ngIf="isGoogleSubmitting"></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="signup-link animate-link">
+      Don't have an account? <a routerLink="/signup" class="hover-effect">Sign up</a>
     </div>
   </div>
 </div>

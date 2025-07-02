@@ -3,37 +3,259 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #6e8efb, #a777e3);
   font-family: 'Arial', sans-serif;
+  background:
+    radial-gradient(circle at center, #1a1a1a 0%, #000000 100%),
+    linear-gradient(135deg, rgba(30, 30, 30, 0.3) 0%, transparent 50%),
+    linear-gradient(225deg, rgba(30, 30, 30, 0.3) 0%, transparent 50%);
+  position: relative;
+  overflow: hidden;
+}
+
+.home-container::before, .home-container::after {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  z-index: 0;
+}
+
+.home-container::before {
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.03) 0%, transparent 40%);
+  animation: pulse 15s ease-in-out infinite alternate;
+}
+
+.home-container::after {
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.05), transparent);
+  animation: wave 15s linear infinite;
+  transform: rotate(-45deg);
+}
+
+@keyframes wave {
+  0% { transform: translateX(-50%) rotate(-45deg); }
+  100% { transform: translateX(50%) rotate(-45deg); }
+}
+
+@keyframes pulse {
+  0% { opacity: 0.5; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1.05); }
 }
 
 .content {
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(30, 30, 30, 0.8);
   border-radius: 10px;
   padding: 3rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
   max-width: 600px;
   width: 90%;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.content:hover {
+  box-shadow:
+    0 12px 48px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  transform: translateY(-5px);
+}
+
+.animate-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .title {
   font-size: 3.5rem;
-  color: #333;
+  color: #fff;
   margin-bottom: 1rem;
   font-weight: bold;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.animate-title {
+  animation: slideInFromLeft 1s ease-out forwards;
+  animation-delay: 0.2s;
+  opacity: 0;
+}
+
+@keyframes slideInFromLeft {
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 .tagline {
   font-size: 1.2rem;
-  color: #666;
+  color: #ccc;
   margin-bottom: 2.5rem;
+}
+
+.animate-tagline {
+  animation: slideInFromRight 1s ease-out forwards;
+  animation-delay: 0.4s;
+  opacity: 0;
+}
+
+@keyframes slideInFromRight {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.player-carousel {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.player-item {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.5s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+  cursor: pointer;
+}
+
+.player-item:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Game Info and Rules Section */
+.game-info-container {
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-out forwards;
+  animation-delay: 0.6s;
+  opacity: 0;
+}
+
+.info-card {
+  background-color: rgba(50, 50, 50, 0.7);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.rule-card {
+  border-left: 4px solid #ffffff;
+}
+
+.info-card.info-card {
+  border-left: 4px solid #ffffff;
+}
+
+.info-title {
+  color: #ffffff;
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.info-text {
+  color: #cccccc;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.info-list {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin: 0;
+  color: #cccccc;
+}
+
+.info-item {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.info-item:last-child {
+  margin-bottom: 0;
+}
+
+.refresh-btn {
+  align-self: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.refresh-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.refresh-icon {
+  font-size: 1.2rem;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.refresh-btn:hover .refresh-icon {
+  transform: rotate(180deg);
 }
 
 .buttons {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 1.5rem;
 }
 
@@ -46,30 +268,98 @@
   text-decoration: none;
   transition: all 0.3s ease;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
 .signup-btn {
-  background-color: #6e8efb;
-  color: white;
-  border: 2px solid #6e8efb;
+  background-color: #ffffff;
+  color: #000000;
+  border: 2px solid #ffffff;
 }
 
 .signup-btn:hover {
-  background-color: #5a7df9;
+  background-color: #f0f0f0;
   transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(110, 142, 251, 0.4);
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.4);
+}
+
+.signup-btn.pulse:hover::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 150%;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  animation: pulse 0.8s ease-out;
+}
+
+@keyframes pulse {
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
 }
 
 .login-btn {
-  background-color: transparent;
-  color: #6e8efb;
-  border: 2px solid #6e8efb;
+  background-color: #000000;
+  color: #ffffff;
+  border: 2px solid #ffffff;
 }
 
 .login-btn:hover {
-  background-color: rgba(110, 142, 251, 0.1);
+  background-color: #222222;
   transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(110, 142, 251, 0.2);
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+.login-btn.glow {
+  transition: all 0.3s ease, box-shadow 0.5s ease;
+}
+
+.login-btn.glow:hover {
+  box-shadow: 0 0 10px #ffffff, 0 0 20px rgba(255, 255, 255, 0.5);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.memes-btn {
+  background-color: #333333;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  margin-top: 1rem;
+}
+
+.memes-btn:hover {
+  background-color: #444444;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+.memes-btn.shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.memes-btn.shine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: skewX(-25deg);
+  transition: all 0s;
+}
+
+.memes-btn.shine:hover::before {
+  animation: shine 1.5s infinite;
+}
+
+@keyframes shine {
+  0% { left: -100%; }
+  100% { left: 200%; }
 }
 
 @media (max-width: 768px) {
@@ -84,5 +374,42 @@
   .buttons {
     flex-direction: column;
     gap: 1rem;
+  }
+
+  .memes-btn {
+    margin-top: 0;
+  }
+
+  .player-carousel {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Responsive styles for game info section */
+  .game-info-container {
+    margin: 1.5rem 0;
+    gap: 1rem;
+  }
+
+  .info-card {
+    padding: 1.2rem;
+  }
+
+  .info-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .info-text {
+    font-size: 0.9rem;
+  }
+
+  .info-list {
+    padding-left: 1.2rem;
+  }
+
+  .info-item {
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
   }
 }

@@ -1,0 +1,32 @@
+<div class="memes-container">
+  <div class="content animate-in">
+    <h1 class="title animate-title">Cards Gallery</h1>
+    <p class="tagline animate-tagline">Click on a card to flip it and reveal a meme</p>
+
+    <div class="meme-grid">
+      <div class="meme-card"
+           *ngFor="let meme of memes"
+           [class.flipped]="meme.isFlipped"
+           (click)="flipCard(meme)">
+        <div class="card-inner">
+          <div class="card-front">
+            <div class="front-content">
+              <span class="social-humor-label">Social Humour</span>
+
+            </div>
+          </div>
+          <div class="card-back">
+            <div class="back-content">
+              <p>{{ meme.backText }}</p>
+              <span class="back-social-humor-label">Social Humour</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <a routerLink="/home" class="btn home-btn">Back to Home</a>
+    </div>
+  </div>
+</div>
